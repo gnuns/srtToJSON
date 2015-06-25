@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Gabriel Nunes">
+    <title>.SRT to JSON</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="srtToJSON.js" charset="utf-8"></script>
+    <style media="screen">
+      .container {
+        padding-top: 3em;
+      }
+      .m0 {
+        text-align: center;
+        padding: 0.5em 0 0 0;
+        font-size: 5em;
+      }
+    </style>
+    <script>
+      fileContent = '';
+      fileEncoding = '';
+      function _(el) {
+      		return document.getElementById(el);
+      }
+      function getResult(){
+        _('toLoad').style.display = 'none';
+        _('loading').style.display = 'block';
+        file = _('fileSelect').files[0];
+        fileEncoding = _('encoding').value;
+
+        var reader  = new FileReader();
+        reader.onloadend = function () {
+          fileContent = reader.result;
+          //console.log(reader.result);
+          whenDone(srtToJSON(reader.result));
+        }
+        reader.readAsText(file, 'ISO-8859-1');
+      }
+      function whenDone(JSON){
+        _('loading').style.display = 'none';
+        _('srt').innerHTML = fileContent;
+        _('json').innerHTML = JSON;
+        _('result').style.display = 'block';
+      }
+    </script>
+  </head>
+  <body>
+
+
+    <div class="container">
+
+      <div class="header clearfix">
+        <a href="./"> <h3 class="text-muted">.SRT to JSON</h3></a>
+      </div>
+
+      <div class="jumbotron" style="padding:3em 1.5em 1.5em 1.5em; position:relative;">
+        <a href="https://github.com/gnuns"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:10" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+        <input type="file" accept=".srt" multiple="false" style="display:none;" id="fileSelect" onchange="getResult();">
+        <p id="toLoad" style="text-align:center;">
+            File language: <br>
+
+          <select id="encoding">
+            <option value="utf-8">English</option>
+            <option value="ISO-8859-1">Portuguese/Spanish</option>
+          </select>
+          <br><br>
+          <a class="btn btn-lg btn-success" href="#" role="button" onclick="_('fileSelect').click();" id="selectButton">Select .str file...</a>
+        </p>
+        <p id="loading" style="text-align:center;display:none;">
+          Loading
+        </p>
+        <div id="result" class="row" style="display:none;">
+          <div class="col-xs-5"><textarea class="form-control" rows="20" id="srt"></textarea></div>
+          <div class="col-xs-1 m0">
+            &gt;
+          </div>
+          <div class="col-xs-6"><textarea class="form-control" rows="20" id="json"></textarea></div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>by <a href="http://github.com/gnuns">@Gnuns</a> </p>
+      </footer>
+
+    </div> <!-- /container -->
+  </body>
+</html>
