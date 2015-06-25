@@ -1,5 +1,5 @@
 /**********************************************************
- * @author Gabriel Nunes <@Gnuns>
+ * @author Gabriel 'Hezag' Nunes
  * @version 0.0.1
  * @license The MIT License (MIT)
  **********************************************************
