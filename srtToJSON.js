@@ -1,7 +1,7 @@
 /**********************************************************
- * @author Gabriel 'Hezag' Nunes
+ * @author Gabriel
  * @version 0.0.1
- * @license The MIT License (MIT)
+ * @license DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
  **********************************************************
  * @param {string} content The .srt file content
  * @returns {string} The SRT file content converted to JSON
